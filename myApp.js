@@ -8,11 +8,16 @@ console.log("Hello World")
 //    res.send('Hello Express');
 //});
 
+app.use(function(req, res, next) {
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next();
+});
+
 absolutePath = __dirname + "/views/index.html";
 
-//app.get("/", function(req, res) {
-//    res.sendFile(absolutePath);
-//});
+app.get("/", function(req, res) {
+   res.sendFile(absolutePath);
+});
 
 publicPath = __dirname + "/public";
 
@@ -29,8 +34,6 @@ app.get("/json", function(req, res) {
         "message": response
     });
 });
-
-
 
 
 
